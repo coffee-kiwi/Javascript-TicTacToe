@@ -1,0 +1,32 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: slategrey;
+}
+
+main {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+}
+
+.turn {
+    grid-area: 1 / 2 / 2 / 3;
+}
+
+.command {
+    grid-area: 3 / 2 / 4 / 3;
+}
+
+.x-side {
+    grid-area: 1 / 1 / 4 / 2;
+    background-color: purple;
+}
+
+.y-side {
+    grid-area: 1 / 3 / 4 / 4;
+    background-color: yellow;
+}
