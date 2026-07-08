@@ -1,3 +1,5 @@
+const { createElement } = require("react");
+
 function createBoard() {
     let board = [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ];
     let moveCount = 0;
@@ -23,8 +25,11 @@ function createBoard() {
 
 
 function startGame() {
-    board = createBoard();
-    let gameFinished = false;
+    game = createBoard();
+
+    const turnContainer = document.getElementById("turn");
+    const commandContainer = document.getElementById("command");
+    const boardContainer = document.getElementById("gameboard");
 
     // Ask for initial player
     
@@ -42,12 +47,51 @@ function startGame() {
         // If not, change player and play again
 
     // If winner is found celebrate winner and ask to play again 
+
+    const displayGame = () => {
+
+        boardContainer.textContent = "";
+        const board = game.getBoard();
+        const player = game.getPlayer();
+
+        turnContainer.textContent = `${player}'s turn:`;
+        board.forEach((cell, index) => {
+            const tile = document.createElement("button");
+            tile.classList.add("tile");
+            tile.dataset.position = index;
+            if (Number.isFinite(cell)) {
+                tile.textContent = " ";
+            } else {
+                tile.textContent = cell;
+            }
+            
+            // console.log(`Tile's index is ${index} and textContent should be ${player}`);
+            boardContainer.appendChild(tile);
+        });
+    };
+
+    function clickHandlerBoard(e) {
+        const selectedTile = e.target.dataset.position;
+
+        if (!selectedTile) return;
+
+        game.updateTile(selectedTile);
+        displayGame();
+        if (calculateWinner(game.getBoard())) {
+            // Game is over
+            const turnContainer = document.getElementById("turn");
+            const player = game.getPlayer;
+            turnContainer.textContent = `Player ${player} is the winner!`;
+        } else {
+            game.changePlayer();
+        }
+        displayGame();
+    }
+    boardContainer.addEventListener("click", clickHandlerBoard);
+    displayGame();
 }
 
-        // Check if position already taken
-        // if (board[position].isFinite) {
-        //     board[position] = player;
-        // }
+
 
 function calculateWinner(board) {
   // Define the 8 possible winning lines
@@ -78,6 +122,3 @@ function calculateWinner(board) {
 
 
 // Display the gameboard
-function displayGame() {
-    const game = createBoard();
-}

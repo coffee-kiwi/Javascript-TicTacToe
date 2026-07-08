@@ -13,13 +13,27 @@ main {
     grid-template-columns: 1fr 2fr 1fr;
 }
 
-.turn {
+ #gameboard {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.5rem;
+    padding: 2rem;
+    background-color: lightskyblue;
+} 
+
+.tile {
+    min-height: 10vh;
+    min-width: auto;
+    font-size: larger;
+}
+
+/* #turn {
     grid-area: 1 / 2 / 2 / 3;
 }
 
-.command {
+#command {
     grid-area: 3 / 2 / 4 / 3;
-}
+}  */
 
 .x-side {
     grid-area: 1 / 1 / 4 / 2;
