@@ -8,14 +8,24 @@ body {
     background-color: slategrey;
 }
 
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10vh;
+}
+
 main {
     display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
+    /* grid-template-columns: 1fr 2fr 1fr; */
+    grid-template-rows: 100px auto;
+    height: 90vh;
 }
 
  #gameboard {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
+
     gap: 0.5rem;
     padding: 2rem;
     background-color: lightskyblue;
@@ -27,13 +37,28 @@ main {
     font-size: larger;
 }
 
-/* #turn {
-    grid-area: 1 / 2 / 2 / 3;
+.top-middle {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
-#command {
-    grid-area: 3 / 2 / 4 / 3;
-}  */
+#turn {
+    font-size: 2rem;
+}
+
+.btns {
+    display: flex;
+    justify-content: space-around;
+    flex-grow: 1;
+}
+
+.btns button {
+    margin: 12px 0px;
+    padding: 4px 8px;
+    border-radius: 10px;
+}
+
 
 .x-side {
     grid-area: 1 / 1 / 4 / 2;
@@ -43,4 +68,23 @@ main {
 .y-side {
     grid-area: 1 / 3 / 4 / 4;
     background-color: yellow;
+}
+
+.x-side,
+.y-side {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 2rem;
+}
+
+hr {
+    border: solid black 3px;
+    border-radius: 10px;
+    width: 80%; 
+}
+
+.info {
+    grid-area: 3 / 2 / 4 / 3;
+    background-color: aquamarine;
 }

@@ -31,6 +31,8 @@ function startGame() {
     const turnContainer = document.getElementById("turn");
     const commandContainer = document.getElementById("command");
     const boardContainer = document.getElementById("gameboard");
+    const scoreX = document.getElementById("scoreX");
+    const scoreY = document.getElementById("scoreY");
 
     const displayGame = () => {
 
@@ -65,6 +67,11 @@ function startGame() {
             if (calculateWinner(game.getBoard())) {
                 game.finishGame();
                 turnContainer.textContent = `Player ${game.getPlayer()} is the winner!`;
+                if (game.getPlayer() === "X") {
+                    scoreX.textContent += "I"
+                } else {
+                    scoreY.textContent += "I"
+                }
             } 
             else if (game.getMoveCount() == 9) {
                 turnContainer.textContent = "It's a tie~"
@@ -76,6 +83,17 @@ function startGame() {
             }
         }
     }
+
+    const togglePlayerBtn = document.getElementById("toggle-player")
+    function toggleHandler(e) {
+        console.log("Toggle button recognised")
+        if (game.getMoveCount() === 0) {
+            game.changePlayer();
+            displayGame();
+        }
+    }
+    togglePlayerBtn.addEventListener("click", toggleHandler)
+
     boardContainer.addEventListener("click", clickHandlerBoard);
     displayGame();
     
@@ -87,8 +105,9 @@ function startHandler(e) {
     console.log("StartBtn clicked and event recognised")
     startGame();
 }
-startBtn.addEventListener("click", startHandler);
 
+
+startBtn.addEventListener("click", startHandler);
 
 function calculateWinner(board) {
 
