@@ -68,9 +68,9 @@ function startGame() {
                 game.finishGame();
                 turnContainer.textContent = `Player ${game.getPlayer()} is the winner!`;
                 if (game.getPlayer() === "X") {
-                    scoreX.textContent += "I"
+                    scoreX.textContent += " 👑"
                 } else {
-                    scoreY.textContent += "I"
+                    scoreY.textContent += " 👑"
                 }
             } 
             else if (game.getMoveCount() == 9) {
