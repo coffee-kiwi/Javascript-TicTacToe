@@ -5,14 +5,12 @@
 }
 
 :root {
-    --primary-color: #FDA362;
-    --secondary-color: lightslategray;
-    --third-color: #FDF062;
-    --fourth-color: #7173EF;
+    --primary-color: lightslategray;
+    --secondary-color: lightgrey;
 }
 
 body {
-    background-color: var(--secondary-color);
+    background-color: var(--primary-color);
 }
 
 header {
@@ -20,7 +18,6 @@ header {
     justify-content: center;
     align-items: center;
     height: 10vh;
-    background-color: var(--secondary-color);
 }
 
 main {
@@ -31,26 +28,12 @@ main {
 }
 
  #gameboard {
+    grid-area: 2 / 2 / 3 / 3;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 0.5rem;
     padding: 2rem;
-    background-color: var(--secondary-color);
 } 
-
-.space {
-    background-color: var(--primary-color);
-}
-
-.space-two {
-    grid-area: 1 / 1 / 2 / 2;
-    background-color: var(--secondary-color);
-}
-
-.space-three {
-    grid-area: 1 / 3 / 2 / 4;
-    background-color: var(--secondary-color);
-}
 
 .tile {
     min-height: 6rem;
@@ -58,9 +41,11 @@ main {
     font-size: larger;
     border-radius: 10px;
     font-size: 5rem;
+    background-color: var(--secondary-color);
 }
 
 .top-middle {
+    grid-area: 1 / 2 / 2 / 3;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -72,29 +57,29 @@ main {
 
 .btns {
     grid-area: 3 / 2 / 4 / 3;
-    display: flex;
     justify-content: space-around;
-    flex-grow: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 0 32px;
+}
+
+#toggle-player {
+    grid-area: 1 / 3 / 2 / 4;
 }
 
 .btns button {
     margin: 12px 0px;
     padding: 4px 8px;
     border-radius: 10px;
+    background-color: var(--secondary-color);
 }
-
 
 .x-side {
     grid-area: 2 / 1 / 4 / 2;
-    /* background-color: var(--primary-color); */
 }
 
 .y-side {
     grid-area: 2 / 3 / 4 / 4;
-    /* background-color: var(--third-color); */
-    /* display: grid;
-    grid-template-rows: 2fr 1fr;
-    justify-items: stretch; */
 }
 
 .x-side,
@@ -102,32 +87,21 @@ main {
     display: grid;
     grid-template-rows: 2fr 1fr;
     justify-items: stretch;
-    /* display: flex;
-    flex-direction: column;
-    align-items: center; */
     font-size: 2rem;
-    /* background-color: var(--secondary-color); */
-    /* min-width: 20vw; */
 }
 
 .scoreboard {
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 1px solid lightslategray;
+    border: 1px solid black;
     border-radius: 10px;
     margin: 24px;
-    background-color: lightgrey;
+    background-color: var(--secondary-color);
 }
 
-
 hr {
-    border: solid black 3px;
+    border: solid black 2px;
     border-radius: 10px;
     width: 80%; 
 }
-
-/* .info {
-    grid-area: 3 / 2 / 4 / 3;
-    background-color: aquamarine;
-} */
