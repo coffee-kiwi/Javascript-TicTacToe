@@ -4,8 +4,15 @@
     box-sizing: border-box;
 }
 
+:root {
+    --primary-color: #71B2EF;
+    --secondary-color: #EF7173;
+    --third-color: #EFED71;
+    --fourth-color: #7173EF;
+}
+
 body {
-    background-color: slategrey;
+    background-color: var(--primary-color);
 }
 
 header {
@@ -13,6 +20,7 @@ header {
     justify-content: center;
     align-items: center;
     height: 10vh;
+    background-color: var(--fourth-color);
 }
 
 main {
@@ -27,9 +35,12 @@ main {
     grid-template-columns: 1fr 1fr 1fr;
     gap: 0.5rem;
     padding: 2rem;
-    background-color: lightskyblue;
+    background-color: var(--primary-color);
 } 
 
+.space {
+    background-color: var(--primary-color);
+}
 .tile {
     min-height: 6rem;
     min-width: auto;
@@ -63,12 +74,12 @@ main {
 
 .x-side {
     grid-area: 1 / 1 / 4 / 2;
-    background-color: purple;
+    background-color: var(--secondary-color);
 }
 
 .y-side {
     grid-area: 1 / 3 / 4 / 4;
-    background-color: yellow;
+    background-color: var(--third-color);
 }
 
 .x-side,
@@ -79,6 +90,7 @@ main {
     font-size: 2rem;
     /* min-width: 20vw; */
 }
+
 
 hr {
     border: solid black 3px;
