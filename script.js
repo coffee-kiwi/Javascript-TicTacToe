@@ -1,13 +1,16 @@
-const { createElement } = require("react");
+// const { createElement } = require("react");
 
 function createBoard() {
     let board = [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ];
     let moveCount = 0;
+    let gameFinished = false;
 
     const increaseMoveCount = () => { moveCount++; };
     const getMoveCount = () => moveCount;
 
-    // Default starting player:
+    const getGameFinished = () => gameFinished;
+    const finishGame = () => { gameFinished = true; };
+
     let player = "X";
     const getPlayer = () => player;
     const getBoard = () => board;
@@ -16,37 +19,18 @@ function createBoard() {
         board[position] = player;
     }
 
-    // Function to switch players. May need to be updated..
     function changePlayer() {
         player === "X" ? player = "Y" : player = "X";
     }
-    return { increaseMoveCount, updateTile, changePlayer, getPlayer, getBoard, getMoveCount };
+    return { increaseMoveCount, updateTile, changePlayer, getPlayer, getBoard, getMoveCount, finishGame, getGameFinished };
 }
 
 
 function startGame() {
-    game = createBoard();
-
+    const game = createBoard();
     const turnContainer = document.getElementById("turn");
     const commandContainer = document.getElementById("command");
     const boardContainer = document.getElementById("gameboard");
-
-    // Ask for initial player
-    
-
-    // Start loop. Break loop if moveCount == 9 || winner is found
-        // Display who's turn it is, guide them to choose a tile by clicking on it
-
-        // take input, position by clicking on tile
-        // [ 0, 1, 2 ]
-        // [ 3, 4, 5 ]
-        // [ 6, 7, 8 ]
-
-        // Update board
-        // Check if winner has been found
-        // If not, change player and play again
-
-    // If winner is found celebrate winner and ask to play again 
 
     const displayGame = () => {
 
@@ -64,37 +48,50 @@ function startGame() {
             } else {
                 tile.textContent = cell;
             }
-            
-            // console.log(`Tile's index is ${index} and textContent should be ${player}`);
             boardContainer.appendChild(tile);
         });
     };
 
     function clickHandlerBoard(e) {
-        const selectedTile = e.target.dataset.position;
-
-        if (!selectedTile) return;
-
-        game.updateTile(selectedTile);
-        displayGame();
-        if (calculateWinner(game.getBoard())) {
-            // Game is over
+        if (game.getGameFinished() === false) {
+            const selectedTile = e.target.dataset.position;
             const turnContainer = document.getElementById("turn");
-            const player = game.getPlayer;
-            turnContainer.textContent = `Player ${player} is the winner!`;
-        } else {
-            game.changePlayer();
+
+            if (!selectedTile) return;
+
+            game.updateTile(selectedTile);
+            game.increaseMoveCount();
+            displayGame();
+            if (calculateWinner(game.getBoard())) {
+                game.finishGame();
+                turnContainer.textContent = `Player ${game.getPlayer()} is the winner!`;
+            } 
+            else if (game.getMoveCount() == 9) {
+                turnContainer.textContent = "It's a tie~"
+                game.finishGame();
+            } 
+            else {
+                game.changePlayer();
+                displayGame();
+            }
         }
-        displayGame();
     }
     boardContainer.addEventListener("click", clickHandlerBoard);
     displayGame();
+    
 }
 
+const startBtn = document.getElementById("start");
+
+function startHandler(e) {
+    console.log("StartBtn clicked and event recognised")
+    startGame();
+}
+startBtn.addEventListener("click", startHandler);
 
 
 function calculateWinner(board) {
-  // Define the 8 possible winning lines
+
   const lines = [
     [0, 1, 2], // Top row
     [3, 4, 5], // Middle row
@@ -106,19 +103,13 @@ function calculateWinner(board) {
     [2, 4, 6]  // Diagonal top-right to bottom-left
   ];
 
-  // Loop through each combination
   for (let i = 0; i < lines.length; i++) {
     const [a, b, c] = lines[i];
     
-    // Check if the first tile is not empty, and then matches the second and third
     if (board[a] && board[a] === board[b] && board[a] === board[c]) {
-      return true; // Returns 'X' or 'O'
+      return true; 
     }
   }
-
-  // No winner found
   return false;
 }
-
-
-// Display the gameboard
+startGame();
