@@ -5,14 +5,14 @@
 }
 
 :root {
-    --primary-color: #71B2EF;
-    --secondary-color: #EF7173;
-    --third-color: #EFED71;
+    --primary-color: #FDA362;
+    --secondary-color: lightslategray;
+    --third-color: #FDF062;
     --fourth-color: #7173EF;
 }
 
 body {
-    background-color: var(--primary-color);
+    background-color: var(--secondary-color);
 }
 
 header {
@@ -20,13 +20,13 @@ header {
     justify-content: center;
     align-items: center;
     height: 10vh;
-    background-color: var(--fourth-color);
+    background-color: var(--secondary-color);
 }
 
 main {
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
-    grid-template-rows: 100px auto;
+    grid-template-rows: 100px 100px auto;
     height: 90vh;
 }
 
@@ -35,12 +35,23 @@ main {
     grid-template-columns: 1fr 1fr 1fr;
     gap: 0.5rem;
     padding: 2rem;
-    background-color: var(--primary-color);
+    background-color: var(--secondary-color);
 } 
 
 .space {
     background-color: var(--primary-color);
 }
+
+.space-two {
+    grid-area: 1 / 1 / 2 / 2;
+    background-color: var(--secondary-color);
+}
+
+.space-three {
+    grid-area: 1 / 3 / 2 / 4;
+    background-color: var(--secondary-color);
+}
+
 .tile {
     min-height: 6rem;
     min-width: auto;
@@ -60,6 +71,7 @@ main {
 }
 
 .btns {
+    grid-area: 3 / 2 / 4 / 3;
     display: flex;
     justify-content: space-around;
     flex-grow: 1;
@@ -73,22 +85,39 @@ main {
 
 
 .x-side {
-    grid-area: 1 / 1 / 4 / 2;
-    background-color: var(--secondary-color);
+    grid-area: 2 / 1 / 4 / 2;
+    /* background-color: var(--primary-color); */
 }
 
 .y-side {
-    grid-area: 1 / 3 / 4 / 4;
-    background-color: var(--third-color);
+    grid-area: 2 / 3 / 4 / 4;
+    /* background-color: var(--third-color); */
+    /* display: grid;
+    grid-template-rows: 2fr 1fr;
+    justify-items: stretch; */
 }
 
 .x-side,
 .y-side {
+    display: grid;
+    grid-template-rows: 2fr 1fr;
+    justify-items: stretch;
+    /* display: flex;
+    flex-direction: column;
+    align-items: center; */
+    font-size: 2rem;
+    /* background-color: var(--secondary-color); */
+    /* min-width: 20vw; */
+}
+
+.scoreboard {
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-size: 2rem;
-    /* min-width: 20vw; */
+    border: 1px solid lightslategray;
+    border-radius: 10px;
+    margin: 24px;
+    background-color: lightgrey;
 }
 
 
@@ -98,7 +127,7 @@ hr {
     width: 80%; 
 }
 
-.info {
+/* .info {
     grid-area: 3 / 2 / 4 / 3;
     background-color: aquamarine;
-}
+} */
